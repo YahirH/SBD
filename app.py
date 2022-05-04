@@ -7,10 +7,10 @@ def clear():
 
 clear()
 
-Servidor = ""
+Servidor = "LENOVO/SQLEXPRESS"
 Db = "UANAL"
-Usuario = ""
-Clave = ""
+Usuario = "Python"
+Clave = "1234"
 
 try:
     conexion = pyodbc.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER='+Servidor+';DATABASE='+Db+';UID='+Usuario+';PWD='+Clave)
