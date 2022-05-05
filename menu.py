@@ -1,4 +1,5 @@
 from colorama import init, Fore
+import pyodbc
 import time
 import os
 
@@ -60,9 +61,11 @@ def menu():
     return opc
 
 
-def crear():
+def crear(cursor):
     msg = "[ 1 ] Registrar Trabajador\n[ 2 ] Registrar Alumno\n[ 3 ] Agregar Materias\n[ 4 ] Regresar"
     opc = validation(msg, 1, 4)
+
+    cursor.execute("SELECT * FROM Alumno")
 
     return opc
 
@@ -84,7 +87,3 @@ def eliminar():
     opc = validation(msg, 1, 4)
 
     return opc
-
-
-clear()
-menu()
