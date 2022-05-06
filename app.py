@@ -63,46 +63,88 @@ def menu():
 
     return opc
 
+def salir_regresar(funcion):
+    opc = int(input("\n[1] Regresar\t[2] Salir\n\nSeleccione una opcion: "))
+    if opc == 1:
+        funcion()
+    else:
+        exit()
 
 def crear():
-    msg = "[ 1 ] Registrar Trabajador\n[ 2 ] Registrar Alumno\n[ 3 ] Agregar Materias\n[ 4 ] Regresar"
+    msg = "[ 1 ] Registrar Alumno\n[ 2 ] Registrar Trabajador\n[ 3 ] Dar de alta un profesor\n[ 4 ] Regresar"
     opc = validation(msg, 1, 4)
 
     clear()
     if opc == 1:
-        app.CrearTrabajador()
-    elif opc == 2:
         app.CrearAlumno()
+        time.sleep(1)
+    elif opc == 2:
+        app.CrearTrabajador()
     elif opc == 3:
-        app.CrearMaterias()
+        app.crearProfesor()
+    else:
+        menu()
 
-    return opc
-
+    salir_regresar(crear)
 
 def mostrar():
-    msg = "[ 1 ] Mostrar Alumnos\n[ 2 ] Mostrar todos los trabajadores\n[ 3 ] Mostrar Profesores\n[ 4 ] Mostrar Facultades\n[ 5 ] Mostrar Todas las materias\n[ 6 ] Regresar"
+    msg = "[ 1 ] Mostrar Alumnos\n[ 2 ] Mostrar todos los trabajadores\n[ 3 ] Mostrar Profesores\n[ 4 ] Mostrar Facultades\n[ 5 ] Regresar"
     opc = validation(msg, 1, 6)
 
-    return opc
+    clear()
+    if opc == 1:
+        print("Mostrando tabla de Alumnos...\n\n")
+        time.sleep(2)
+        app.mostrarAlumnos()
+    elif opc == 2:
+        print("Mostrando tabla de Trabajadores...\n\n")
+        time.sleep(2)
+        app.mostrarTrabajadores()
+    elif opc == 3:
+        print("Mostrando tabla de Profesores...\n\n")
+        time.sleep(2)
+        app.mostrarProfesor()
+    elif opc == 4:
+        print("Mostrando tabla de Facultades...\n\n")
+        time.sleep(2)
+        app.mostrarFacultades()
+    else:
+        menu()
+
+    salir_regresar(mostrar)
 
 def modificar():
-    msg = "[ 1 ] Modificar datos de alumno\n[ 2 ] Modificar datos de trabajador\n[ 3 ] Modificar Materia\n[ 4 ] Regresar"
+    msg = "[ 1 ] Modificar datos de alumno\n[ 2 ] Modificar datos de trabajador\n[ 3 ] Regresar"
     opc = validation(msg, 1, 4)
 
-    return opc
+    if opc == 1:
+        pass
+    elif opc == 2:
+        pass
+    else:
+        modificar()
+
+    salir_regresar(modificar)
 
 def eliminar():
-    msg = "[ 1 ] Eliminar un alumno\n[ 2 ] Eliminar trabajador\n[ 3 ] Eliminar Materia\n[ 4 ] Regresar"
+    msg = "[ 1 ] Eliminar un alumno\n[ 2 ] Eliminar trabajador\n[ 4 ] Regresar"
     opc = validation(msg, 1, 4)
 
-    return opc
+    if opc == 1:
+        pass
+    elif opc == 2:
+        pass
+    else:
+        eliminar()
+
+    salir_regresar(eliminar)
 
 
 if __name__ == '__main__':
 
     # Inicializar Crud
     app = crud.db()
-
+    
     menu()
 
     app.close_connection()
